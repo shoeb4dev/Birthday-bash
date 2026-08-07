@@ -1,28 +1,79 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import Welcome from "./components/Welcome";
-import Hero from "./components/Hero";
-
+import Loading from "./components/Loading/Loading";
+import Welcome from "./components/Welcome/Welcome";
+import Hero from "./components/Hero/Hero";
+import Gallery from "./components/Gallery/Gallery";
+import Letter from "./components/Letter/Letter";
+import GiftBox from "./components/GiftBox/GiftBox";
+import Cake from "./components/Cake/Cake";
+import Fireworks from "./components/Fireworks/Fireworks";
 function App() {
 
-const [opened,setOpened]=useState(false);
+  const [loading, setLoading] = useState(true);
+  const [screen, setScreen] = useState("welcome");
 
-return(
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
 
-<>
+    return () => clearTimeout(timer);
+  }, []);
 
-{
-!opened
-?
-<Welcome onOpen={()=>setOpened(true)}/>
-:
-<Hero/>
-}
+  if (loading) {
+    return <Loading />;
+  }
 
-</>
+  switch (screen) {
+    case "welcome":
+      return (
+        <Welcome
+          onOpen={() => setScreen("hero")}
+        />
+      );
 
-);
+    case "hero":
+  return (
+    <Hero
+      onContinue={() => setScreen("gallery")}
+    />
+  );
+ case "gallery":
+  return (
+    <Gallery
+      onContinue={() => setScreen("letter")}
+    />
+  );
 
+case "letter":
+  return (
+    <Letter
+      onContinue={() => setScreen("gift")}
+    />
+  );
+
+case "gift":
+  return (
+    <GiftBox
+      onContinue={() => setScreen("cake")}
+    />
+  );
+  case "cake":
+  return (
+    <Cake
+      onContinue={() => setScreen("fireworks")}
+    />
+  );
+  case "fireworks":
+  return (
+    <Fireworks
+      onReplay={() => setScreen("welcome")}
+    />
+  );
+    default:
+      return null;
+  }
 }
 
 export default App;
