@@ -1,0 +1,24 @@
+.background{
+    min-height:100vh;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(
+        180deg,
+        #ffe4f3,
+        #fff6fb,
+        #ffffff
+    );
+}
+
+.gradient{
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle,#ffffff55,transparent 70%);
+}
+
+.stars{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}

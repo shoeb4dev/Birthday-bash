@@ -1,0 +1,33 @@
+:root{
+
+/* Colors */
+
+--primary:#ff5fa2;
+--secondary:#c77dff;
+--accent:#ffd166;
+
+--background:#fff7fb;
+--card:#ffffffcc;
+
+--text:#333;
+--text-light:#666;
+
+/* Border Radius */
+
+--radius-sm:12px;
+--radius-md:20px;
+--radius-lg:30px;
+
+/* Shadow */
+
+--shadow:0 15px 40px rgba(0,0,0,.15);
+
+/* Animation */
+
+--transition:.35s ease;
+
+/* Container */
+
+--container:1200px;
+
+}

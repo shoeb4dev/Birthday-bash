@@ -1,0 +1,58 @@
+.gift-section {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff4fb, #ffe2f1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.gift-section h1 {
+  color: #ff4f9b;
+  margin-bottom: 30px;
+}
+
+.gift-box {
+  font-size: 120px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.gift-box p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.gift-content {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,.15);
+}
+
+.emoji-container {
+  font-size: 40px;
+  margin: 25px 0;
+}
+
+.gift-content p {
+  margin-bottom: 25px;
+  line-height: 1.8;
+}
+
+.continue-btn {
+  padding: 14px 35px;
+  border: none;
+  border-radius: 50px;
+  background: #ff4f9b;
+  color: white;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.continue-btn:hover {
+  background: #ff2d85;
+}
