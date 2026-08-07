@@ -16,20 +16,19 @@ function Hero({ onContinue }) {
       <div className="butterfly butterfly2">🦋</div>
 
       <div className="hero-content">
-
         <h1>👑 Happy Birthday 👑</h1>
 
         <h2>Princess Ayesha</h2>
 
         <p>
           Today is your magical day.
+          <br />
           May your smile shine brighter than every star.
         </p>
 
         <button onClick={onContinue}>
           🎁 Continue Journey
         </button>
-
       </div>
 
     </section>
