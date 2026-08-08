@@ -1,58 +1,794 @@
+/* ================================
+   GIFT BOX SCREEN
+================================ */
+
 .gift-section {
+  position: relative;
   min-height: 100vh;
-  background: linear-gradient(180deg, #fff4fb, #ffe2f1);
+  width: 100%;
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
+
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(181, 49, 220, 0.22),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #120018 0%,
+      #210025 45%,
+      #100014 100%
+    );
+
+  color: white;
 }
 
-.gift-section h1 {
-  color: #ff4f9b;
-  margin-bottom: 30px;
+
+/* ================================
+   BACKGROUND GLOW
+================================ */
+
+.gift-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.45;
 }
 
-.gift-box {
-  font-size: 120px;
-  cursor: pointer;
-  text-align: center;
+.gift-glow-one {
+  width: 350px;
+  height: 350px;
+
+  background: #d62cff;
+
+  top: 20%;
+  left: 35%;
 }
 
-.gift-box p {
-  margin-top: 10px;
+.gift-glow-two {
+  width: 250px;
+  height: 250px;
+
+  background: #ff2da6;
+
+  bottom: 5%;
+  right: 20%;
+}
+
+
+/* ================================
+   STARS
+================================ */
+
+.gift-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gift-stars span {
+  position: absolute;
+
+  color: white;
   font-size: 18px;
+
+  text-shadow:
+    0 0 8px white,
+    0 0 18px #ff72d2;
+
+  animation: starTwinkle 2.5s ease-in-out infinite;
 }
 
-.gift-content {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  max-width: 600px;
+.gift-stars span:nth-child(1) {
+  top: 18%;
+  left: 15%;
+}
+
+.gift-stars span:nth-child(2) {
+  top: 30%;
+  left: 45%;
+}
+
+.gift-stars span:nth-child(3) {
+  top: 22%;
+  right: 22%;
+}
+
+.gift-stars span:nth-child(4) {
+  top: 50%;
+  left: 8%;
+}
+
+.gift-stars span:nth-child(5) {
+  top: 65%;
+  right: 15%;
+}
+
+.gift-stars span:nth-child(6) {
+  bottom: 20%;
+  left: 25%;
+}
+
+.gift-stars span:nth-child(7) {
+  bottom: 12%;
+  right: 35%;
+}
+
+.gift-stars span:nth-child(8) {
+  top: 40%;
+  right: 8%;
+}
+
+.gift-stars span:nth-child(even) {
+  animation-delay: 1s;
+}
+
+@keyframes starTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+
+/* ================================
+   HEADING
+================================ */
+
+.gift-heading {
+  position: relative;
+  z-index: 5;
+
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,.15);
+  margin-bottom: 25px;
+}
+
+.gift-heading-icon {
+  font-size: 42px;
+
+  margin-bottom: 5px;
+
+  filter:
+    drop-shadow(0 0 10px #ff4fd8)
+    drop-shadow(0 0 20px #ff4fd8);
+
+  animation: floatingGift 2.5s ease-in-out infinite;
+}
+
+@keyframes floatingGift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.gift-heading h1 {
+  margin: 0;
+
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+
+  font-weight: 800;
+  letter-spacing: -2px;
+
+  color: white;
+
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 30px rgba(255, 73, 218, 0.4);
+}
+
+.gift-heading h1 span {
+  display: block;
+
+  background: linear-gradient(
+    90deg,
+    #ff70bd,
+    #d746ff,
+    #ff8ad5
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  filter: drop-shadow(0 0 15px rgba(255, 67, 208, 0.45));
+}
+
+.gift-heading p {
+  margin-top: 22px;
+
+  font-size: 17px;
+  line-height: 1.6;
+
+  color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* ================================
+   GIFT CONTAINER
+================================ */
+
+.gift-container {
+  position: relative;
+  z-index: 10;
+
+  width: 220px;
+  height: 180px;
+
+  margin-top: 5px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Glow underneath gift */
+
+.gift-box-glow {
+  position: absolute;
+
+  width: 190px;
+  height: 70px;
+
+  bottom: 5px;
+
+  background: #ff36d1;
+
+  border-radius: 50%;
+
+  filter: blur(35px);
+
+  opacity: 0.7;
+
+  animation: giftGlow 2s ease-in-out infinite;
+}
+
+@keyframes giftGlow {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+
+/* ================================
+   GIFT BODY
+================================ */
+
+.gift-body {
+  position: absolute;
+
+  width: 210px;
+  height: 115px;
+
+  bottom: 15px;
+
+  border-radius: 0 0 12px 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4bb7,
+      #cf28a5
+    );
+
+  box-shadow:
+    0 15px 30px rgba(0, 0, 0, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  overflow: hidden;
+}
+
+
+/* Vertical ribbon */
+
+.gift-ribbon-vertical {
+  position: absolute;
+
+  width: 20px;
+  height: 100%;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    90deg,
+    #ffd95a,
+    #ffef88,
+    #ffc928
+  );
+
+  box-shadow:
+    0 0 8px rgba(255, 220, 80, 0.6);
+}
+
+
+/* Horizontal ribbon */
+
+.gift-ribbon-horizontal {
+  position: absolute;
+
+  width: 100%;
+  height: 18px;
+
+  top: 48%;
+
+  background: linear-gradient(
+    90deg,
+    #ffd95a,
+    #ffef88,
+    #ffc928
+  );
+}
+
+
+/* Shine */
+
+.gift-body-shine {
+  position: absolute;
+
+  width: 60px;
+  height: 100%;
+
+  top: 0;
+  left: -80px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  animation: giftShine 3s infinite;
+}
+
+@keyframes giftShine {
+  0% {
+    left: -100px;
+  }
+
+  50% {
+    left: 250px;
+  }
+
+  100% {
+    left: 250px;
+  }
+}
+
+
+/* ================================
+   GIFT LID
+================================ */
+
+.gift-lid {
+  position: absolute;
+
+  width: 220px;
+  height: 48px;
+
+  top: 35px;
+
+  z-index: 5;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff55bf,
+      #d72ba7
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(255, 51, 213, 0.35);
+}
+
+
+/* Lid ribbon */
+
+.gift-lid-ribbon {
+  position: absolute;
+
+  width: 20px;
+  height: 100%;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    90deg,
+    #ffd84f,
+    #fff18b,
+    #ffc52d
+  );
+}
+
+
+/* ================================
+   BOW
+================================ */
+
+.gift-bow {
+  position: absolute;
+
+  top: -22px;
+  left: 50%;
+
+  width: 60px;
+  height: 40px;
+
+  transform: translateX(-50%);
+}
+
+.bow-left,
+.bow-right {
+  position: absolute;
+
+  width: 32px;
+  height: 25px;
+
+  background: #ffd64d;
+
+  border-radius: 50% 50% 50% 10%;
+
+  box-shadow: 0 0 8px rgba(255, 218, 70, 0.5);
+}
+
+.bow-left {
+  left: 0;
+  transform: rotate(-25deg);
+}
+
+.bow-right {
+  right: 0;
+  transform: scaleX(-1) rotate(-25deg);
+}
+
+.bow-center {
+  position: absolute;
+
+  width: 16px;
+  height: 16px;
+
+  background: #ffc72c;
+
+  border-radius: 50%;
+
+  left: 50%;
+  top: 8px;
+
+  transform: translateX(-50%);
+}
+
+
+/* ================================
+   SHAKE ANIMATION
+================================ */
+
+.gift-container.is-shaking {
+  animation: giftShake 0.12s linear infinite;
+}
+
+@keyframes giftShake {
+  0% {
+    transform: translateX(0) rotate(0);
+  }
+
+  25% {
+    transform: translateX(-7px) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateX(7px) rotate(3deg);
+  }
+
+  75% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+
+  100% {
+    transform: translateX(5px) rotate(2deg);
+  }
+}
+
+
+/* ================================
+   LIGHT BURST
+================================ */
+
+.gift-light {
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 64, 220, 0.6),
+    transparent 70%
+  );
+
+  filter: blur(5px);
+
+  z-index: 20;
+}
+
+
+/* ================================
+   PARTICLES
+================================ */
+
+.gift-particle {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  z-index: 30;
+
+  font-size: 20px;
+
+  pointer-events: none;
+
+  filter:
+    drop-shadow(0 0 5px #ff6adf)
+    drop-shadow(0 0 10px #ff6adf);
+}
+
+
+/* ================================
+   HEART
+================================ */
+
+.gift-heart {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  z-index: 40;
+
+  font-size: 45px;
+
+  transform: translate(-50%, -50%);
+
+  filter:
+    drop-shadow(0 0 10px #ff4fc9)
+    drop-shadow(0 0 25px #ff4fc9);
+}
+
+
+/* ================================
+   INSTRUCTION
+================================ */
+
+.gift-instruction {
+  position: relative;
+  z-index: 10;
+
+  margin-top: 35px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 16px;
+
+  letter-spacing: 0.5px;
+
+  text-align: center;
+}
+
+.gift-instruction span {
+  color: #ff69d1;
+
+  margin: 0 10px;
+
+  text-shadow:
+    0 0 8px #ff69d1;
+}
+
+
+/* ================================
+   AFTER OPENING MESSAGE
+================================ */
+
+.gift-message {
+  position: relative;
+  z-index: 50;
+
+  text-align: center;
+
+  max-width: 600px;
+
+  margin-top: 25px;
+}
+
+.gift-message h2 {
+  margin: 0;
+
+  font-size: 32px;
+
+  color: white;
+
+  text-shadow:
+    0 0 10px #ff65d3,
+    0 0 25px rgba(255, 65, 210, 0.6);
 }
 
 .emoji-container {
-  font-size: 40px;
-  margin: 25px 0;
+  margin: 18px 0;
+
+  font-size: 28px;
+
+  letter-spacing: 5px;
 }
 
-.gift-content p {
-  margin-bottom: 25px;
-  line-height: 1.8;
+.gift-message p {
+  margin: 10px auto 25px;
+
+  max-width: 500px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  line-height: 1.7;
 }
 
-.continue-btn {
-  padding: 14px 35px;
+
+/* ================================
+   CONTINUE BUTTON
+================================ */
+
+.gift-continue-btn {
   border: none;
+
+  padding: 15px 32px;
+
   border-radius: 50px;
-  background: #ff4f9b;
+
+  font-size: 16px;
+  font-weight: 700;
+
   color: white;
+
   cursor: pointer;
-  font-size: 17px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff3cae,
+      #c52cff
+    );
+
+  box-shadow:
+    0 8px 25px rgba(215, 35, 255, 0.4),
+    0 0 20px rgba(255, 55, 205, 0.35);
+
+  transition: 0.3s;
 }
 
-.continue-btn:hover {
-  background: #ff2d85;
+.gift-continue-btn:hover {
+  box-shadow:
+    0 10px 30px rgba(215, 35, 255, 0.65),
+    0 0 30px rgba(255, 55, 205, 0.5);
+}
+
+.gift-continue-btn span {
+  margin-left: 8px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+  .gift-section {
+    padding: 25px 15px;
+  }
+
+  .gift-heading {
+    margin-bottom: 15px;
+  }
+
+  .gift-heading-icon {
+    font-size: 32px;
+  }
+
+  .gift-heading h1 {
+    font-size: 2.5rem;
+  }
+
+  .gift-heading p {
+    font-size: 15px;
+  }
+
+  .gift-container {
+    transform: scale(0.85);
+  }
+
+  .gift-container.is-shaking {
+    animation: giftShakeMobile 0.12s linear infinite;
+  }
+
+  .gift-instruction {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .gift-message h2 {
+    font-size: 27px;
+  }
+
+  .emoji-container {
+    font-size: 23px;
+  }
+
+  .gift-message p {
+    font-size: 14px;
+  }
+}
+
+@keyframes giftShakeMobile {
+  0% {
+    transform: scale(0.85) translateX(0);
+  }
+
+  25% {
+    transform: scale(0.85) translateX(-6px);
+  }
+
+  50% {
+    transform: scale(0.85) translateX(6px);
+  }
+
+  75% {
+    transform: scale(0.85) translateX(-4px);
+  }
+
+  100% {
+    transform: scale(0.85) translateX(4px);
+  }
 }
