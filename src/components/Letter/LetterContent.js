@@ -1,7 +1,7 @@
 const letter = {
   title: "A Special Letter ❤️",
 
-  message: `Dear Princess Ayesha,
+  message: `Dear Princess Ashu Baby,
 
 Today is one of the happiest days because it's your birthday!
 

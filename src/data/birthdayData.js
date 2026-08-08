@@ -1,5 +1,5 @@
 const birthdayData = {
-  name: "Princess Ayesha",
+  name: "Princess Ashu Baby",
   age: 6,
 
   title: "Happy Birthday",

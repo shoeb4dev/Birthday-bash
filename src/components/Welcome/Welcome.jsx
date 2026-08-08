@@ -17,7 +17,7 @@ function Welcome({ onOpen }) {
         </h1>
 
         <h2>
-          Princess Ayesha
+          Princess Ashu Baby
         </h2>
 
         <p>
