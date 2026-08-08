@@ -1,63 +1,571 @@
-.fireworks-section{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-background:linear-gradient(180deg,#ffeff8,#ffd6ec);
-overflow:hidden;
-position:relative;
+.fireworks-section {
+  position: relative;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 20px;
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      #21002d 0%,
+      #0c0015 45%,
+      #030006 100%
+    );
+
+  color: white;
+
+  text-align: center;
 }
 
-.fireworks-section h1{
-font-size:3.5rem;
-color:#ff4f9b;
-margin-bottom:20px;
+
+/* =========================================
+   BACKGROUND GLOW
+   ========================================= */
+
+.fireworks-glow {
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 50, 190, 0.18),
+      transparent 65%
+    );
+
+  filter: blur(20px);
+
+  animation: skyGlow 5s ease-in-out infinite;
+
+  pointer-events: none;
 }
 
-.fireworks-section h2{
-font-size:2rem;
-color:#8e44ad;
-margin-bottom:20px;
+
+/* =========================================
+   STARS
+   ========================================= */
+
+.firework-stars {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
 }
 
-.fireworks-section p{
-font-size:1.2rem;
-max-width:700px;
-line-height:1.8;
-margin-bottom:40px;
-color:#444;
+.firework-stars span {
+  position: absolute;
+
+  color: white;
+
+  opacity: 0.35;
+
+  font-size: 15px;
+
+  text-shadow:
+    0 0 8px white,
+    0 0 18px #ff55c5;
+
+  animation: starBlink 3s ease-in-out infinite;
 }
 
-.hearts{
-font-size:40px;
-animation:floatHearts 3s infinite alternate;
-margin-bottom:40px;
+.firework-stars span:nth-child(1) {
+  left: 7%;
+  top: 15%;
 }
 
-@keyframes floatHearts{
-0%{
-transform:translateY(0);
-}
-100%{
-transform:translateY(-20px);
-}
+.firework-stars span:nth-child(2) {
+  left: 20%;
+  top: 65%;
+  animation-delay: 0.5s;
 }
 
-.replay-btn{
-padding:15px 35px;
-border:none;
-border-radius:40px;
-background:#ff4f9b;
-color:white;
-font-size:18px;
-cursor:pointer;
-transition:.3s;
+.firework-stars span:nth-child(3) {
+  left: 35%;
+  top: 10%;
+  animation-delay: 1s;
 }
 
-.replay-btn:hover{
-background:#ff2d85;
-transform:translateY(-3px);
+.firework-stars span:nth-child(4) {
+  left: 48%;
+  top: 75%;
+  animation-delay: 1.5s;
+}
+
+.firework-stars span:nth-child(5) {
+  right: 10%;
+  top: 12%;
+  animation-delay: 2s;
+}
+
+.firework-stars span:nth-child(6) {
+  right: 25%;
+  top: 68%;
+  animation-delay: 0.8s;
+}
+
+.firework-stars span:nth-child(7) {
+  right: 8%;
+  top: 52%;
+  animation-delay: 1.8s;
+}
+
+.firework-stars span:nth-child(8) {
+  left: 10%;
+  top: 45%;
+  animation-delay: 2.3s;
+}
+
+.firework-stars span:nth-child(9) {
+  left: 75%;
+  top: 75%;
+  animation-delay: 1.2s;
+}
+
+.firework-stars span:nth-child(10) {
+  left: 60%;
+  top: 8%;
+  animation-delay: 2.5s;
+}
+
+
+/* =========================================
+   FIREWORK
+   ========================================= */
+
+.firework {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  transform-origin: center;
+
+  pointer-events: none;
+}
+
+.firework-center {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 8px;
+  height: 8px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 8px white,
+    0 0 20px #ff6ac5,
+    0 0 35px #a53dff;
+}
+
+.firework-particle {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  color: #ff9ddd;
+
+  font-size: 16px;
+
+  transform:
+    translate(var(--x), var(--y));
+
+  text-shadow:
+    0 0 8px white,
+    0 0 15px #ff55c5,
+    0 0 30px #9d35ff;
+}
+
+
+/* =========================================
+   CONTENT
+   ========================================= */
+
+.fireworks-content {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  max-width: 650px;
+
+  padding: 40px 25px;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border:
+    1px solid
+    rgba(255, 150, 220, 0.2);
+
+  backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(255, 50, 190, 0.08);
+}
+
+
+/* =========================================
+   EMOJI
+   ========================================= */
+
+.celebration-emoji {
+  font-size: 55px;
+
+  margin-bottom: 10px;
+
+  filter:
+    drop-shadow(0 0 12px rgba(255, 80, 190, 0.7));
+}
+
+
+/* =========================================
+   SMALL TITLE
+   ========================================= */
+
+.final-small {
+  margin: 0 0 12px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  letter-spacing: 5px;
+}
+
+
+/* =========================================
+   MAIN TITLE
+   ========================================= */
+
+.fireworks-content h1 {
+  margin: 0;
+
+  font-size: clamp(
+    2.5rem,
+    9vw,
+    5rem
+  );
+
+  line-height: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff65bb,
+      #fff,
+      #ff8fd0,
+      #b65cff,
+      #ff65bb
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    birthdayGradient 5s linear infinite;
+
+  filter:
+    drop-shadow(
+      0 0 20px
+      rgba(255, 70, 190, 0.25)
+    );
+}
+
+
+/* =========================================
+   NAME
+   ========================================= */
+
+.fireworks-content h2 {
+  margin: 18px 0 0;
+
+  font-size: clamp(
+    1.5rem,
+    6vw,
+    2.5rem
+  );
+
+  color: #ffc3e7;
+
+  text-shadow:
+    0 0 15px rgba(255, 90, 190, 0.4);
+}
+
+
+/* =========================================
+   DIVIDER
+   ========================================= */
+
+.final-divider {
+  height: 2px;
+
+  margin: 25px auto;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #ff76c6,
+      #fff,
+      #ff76c6,
+      transparent
+    );
+
+  box-shadow:
+    0 0 10px #ff55bb;
+}
+
+
+/* =========================================
+   MESSAGE
+   ========================================= */
+
+.final-message {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.7);
+
+  font-size: 15px;
+
+  line-height: 1.9;
+}
+
+
+/* =========================================
+   HEARTS
+   ========================================= */
+
+.final-hearts {
+  margin-top: 22px;
+
+  font-size: 22px;
+
+  letter-spacing: 5px;
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(255, 80, 190, 0.6)
+    );
+}
+
+
+/* =========================================
+   REPLAY BUTTON
+   ========================================= */
+
+.replay-btn {
+  margin-top: 30px;
+
+  padding: 15px 32px;
+
+  border: 1px solid
+    rgba(255, 180, 225, 0.3);
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4fae,
+      #8e32e8
+    );
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 30px
+    rgba(255, 50, 170, 0.3);
+}
+
+.replay-btn span {
+  display: inline-block;
+
+  margin-left: 8px;
+
+  font-size: 20px;
+}
+
+
+/* =========================================
+   BOTTOM GLOW
+   ========================================= */
+
+.bottom-glow {
+  position: absolute;
+
+  bottom: -180px;
+
+  left: 50%;
+
+  width: 600px;
+  height: 300px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 50, 180, 0.15);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes skyGlow {
+  0%,
+  100% {
+    opacity: 0.5;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.15);
+  }
+}
+
+@keyframes starBlink {
+  0%,
+  100% {
+    opacity: 0.15;
+
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.3);
+  }
+}
+
+@keyframes birthdayGradient {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 500px) {
+  .fireworks-section {
+    padding: 20px 15px;
+  }
+
+  .fireworks-content {
+    padding: 35px 18px;
+  }
+
+  .celebration-emoji {
+    font-size: 45px;
+  }
+
+  .final-small {
+    font-size: 10px;
+
+    letter-spacing: 3px;
+  }
+
+  .fireworks-content h1 {
+    font-size: 42px;
+  }
+
+  .fireworks-content h2 {
+    font-size: 25px;
+  }
+
+  .final-message {
+    font-size: 14px;
+  }
+
+  .replay-btn {
+    width: 100%;
+
+    max-width: 280px;
+  }
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 360px) {
+  .fireworks-content {
+    padding: 30px 15px;
+  }
+
+  .fireworks-content h1 {
+    font-size: 36px;
+  }
+
+  .fireworks-content h2 {
+    font-size: 22px;
+  }
 }
