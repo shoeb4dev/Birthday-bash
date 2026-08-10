@@ -157,7 +157,7 @@ function Fireworks({ onReplay }) {
             delay: 1.8,
           }}
         >
-          Princess Ashu Baby 👑
+          My Lovely Wife👑
         </motion.h2>
 
         <motion.div
