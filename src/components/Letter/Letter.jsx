@@ -134,6 +134,7 @@ function Letter({ onContinue }) {
 
             <div className="letter-signature">
               With lots of love ❤️
+               Yaseen Khan
             </div>
 
             <button
